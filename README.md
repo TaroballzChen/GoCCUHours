@@ -42,7 +42,10 @@ go build -o CCUHours .
     ./CCUHours
     ```
 
-# 詳細使用方法
+# 詳細使用方法(影片)
+[![CCUHours](https://i9.ytimg.com/vi/--TSqVmpRnc/mq3.jpg?sqp=CJW_yewF&rs=AOn4CLBCyr2fsfBI5bfIcPdrefMtEuQZvQ)](https://youtu.be/--TSqVmpRnc "CCUHours")
+
+# 規則及注意事項
 * AllowAction 裡有明確定義合法的`action`
 * 除了AllowAction有數字(`1,2,3...`子選單可進入)外，皆使用`action`作為開頭
 * `action`分別為`set`(設置),`add`(添加),`rm`(刪除),`run`(執行功能),`exit`(離開選單)
