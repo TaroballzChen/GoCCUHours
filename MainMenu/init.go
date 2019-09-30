@@ -1,9 +1,9 @@
 package MainMenu
 
 import (
-	"driver"
+	"github.com/curtis992250/GoCCUHours/driver"
 	"fmt"
-	"menu"
+	"github.com/curtis992250/GoCCUHours/menu"
 	"strconv"
 )
 

@@ -2,7 +2,7 @@ package MainMenu
 
 import (
 	"fmt"
-	"menu"
+	"github.com/curtis992250/GoCCUHours/menu"
 	"os"
 	"time"
 )

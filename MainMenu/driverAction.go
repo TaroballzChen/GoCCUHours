@@ -1,11 +1,11 @@
 package MainMenu
 
 import (
-	"driver"
+	"github.com/curtis992250/GoCCUHours/driver"
 	"errors"
 	"fmt"
 	"github.com/tebeka/selenium"
-	"menu"
+	"github.com/curtis992250/GoCCUHours/menu"
 )
 
 func LoginSystem(d driver.Driver,part_time bool)error{

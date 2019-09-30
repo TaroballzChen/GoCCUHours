@@ -1,7 +1,7 @@
 package MainMenu
 
 import (
-	"driver"
+	"github.com/curtis992250/GoCCUHours/driver"
 	"errors"
 	"fmt"
 	"github.com/tebeka/selenium"
