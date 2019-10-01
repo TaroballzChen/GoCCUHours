@@ -1,5 +1,5 @@
 # GoCCUHours
-中正大學自動填寫時數(兼任助理、學習型臨時工)的自動化腳本終端工具
+中正大學自動填寫時數(助理、臨時工)的自動化腳本終端工具
 ![terminal](https://i.imgur.com/vobpyUl.png)
 
 # 需求(Requirements)
@@ -43,7 +43,7 @@ go build -o CCUHours .
     ```
 
 # 詳細使用方法(影片)
-[![CCUHours](https://i9.ytimg.com/vi/--TSqVmpRnc/mq3.jpg?sqp=CJW_yewF&rs=AOn4CLBCyr2fsfBI5bfIcPdrefMtEuQZvQ)](https://youtu.be/--TSqVmpRnc "CCUHours")
+[![CCUHours](https://img.youtube.com/vi/--TSqVmpRnc/hqdefault.jpg)](https://youtu.be/--TSqVmpRnc "CCUHours")
 
 # 規則及注意事項
 * AllowAction 裡有明確定義合法的`action`
@@ -79,8 +79,3 @@ or `work1`對應編號為`1`
 ```cmd
 rm 1
 ```
-
-
-
-# Known Issue
-* 目前手邊無**勞僱型臨時工**帳號可測試，所以無法填寫此身分的時數
