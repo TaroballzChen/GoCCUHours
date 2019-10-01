@@ -83,7 +83,7 @@ func (m *Menu) GetUserInput()([]string,error){
 	if scanner.Scan() {
 		Userin = scanner.Text()
 	}
-	switch result := strings.Split(Userin, " "); len(result) {
+	switch result := strings.SplitN(Userin, " ",3); len(result) {
 	case 1:
 		result = append(result,"")
 		fallthrough

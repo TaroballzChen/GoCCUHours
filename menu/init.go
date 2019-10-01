@@ -115,11 +115,17 @@ func HoursInit()*Menu {
 			OptName:     "Month",
 			Text:        "[必填] 欲填寫的月份",
 		},
+		"ExcludeDays":&MenuOptions{
+			ID:          4,
+			OptName:    "ExcludeDays",
+			Value:      "0,6",
+			Text:       "[選填] 欲扣除禮拜幾不填(0為日；6為六)",
+		},
 		"Action": &MenuOptions{
-			ID:        4,
-			OptName:  "Action",
-			Value:    "1",
-			Text:     "[必填] 1).時數登錄 ； 2).日誌登錄",
+			ID:          5,
+			OptName:    "Action",
+			Value:      "",
+			Text:      "[必填] 1).時數登錄 ； 2).日誌登錄",
 		},
 	}
 	menu.AllowAction = allowAct{
@@ -143,13 +149,13 @@ func HoursInit()*Menu {
 		}
 
 		menu.Options["HourData"] = &MenuOptions{
-			ID:          5,
+			ID:          6,
 			OptName:     "HourData",
 			Text:        "時數資料",
 			CallSubMenu: hm,
 		}
 
-		menu.AllowAction["5"] = HourData
+		menu.AllowAction["6"] = HourData
 		return nil
 	}
 	return menu
@@ -186,15 +192,15 @@ func HourDataInit(opts map[string]*MenuOptions)(*Menu,error){
 	if err != nil {
 		return nil,err
 	}
-
-	workDay := WorkDayList(intHoursParam["Year"],intHoursParam["Month"])
+	ex := intHoursParam["ExcludeDays"].([]int)
+	workDay := WorkDayList(intHoursParam["Year"].(int),intHoursParam["Month"].(int),ex...)
 
 	var timefmtList  = []string{}
 
 
 	switch intHoursParam["Action"] {
 	case 1:
-		hourZone, leftHour := intHoursParam["WorkHour"]/4 ,intHoursParam["WorkHour"]%4
+		hourZone, leftHour := intHoursParam["WorkHour"].(int)/4 ,intHoursParam["WorkHour"].(int)%4
 		timefmtList = outCalcTimefmtList(hourZone,leftHour)
 	default:
 		for i:=0;i<len(workDay);i++{

@@ -50,7 +50,7 @@ func parttime(d driver.Driver)error{
 		timeZone :=  strings.Split(timeroot.Value,",")
 
 		for _,v := range timeZone {
-
+			v = strings.TrimSpace(v)
 			if v == "" {
 				continue
 			}
@@ -69,9 +69,9 @@ func parttime(d driver.Driver)error{
 
 			hourZone := strings.Split(v,"-")
 
-			_ = driver.WebElemAction(d, driver.SendKey,selenium.ByName,"shour",hourZone[0])
+			_ = driver.WebElemAction(d, driver.SendKey,selenium.ByName,"shour",strings.TrimSpace(hourZone[0]))
 
-			_ = driver.WebElemAction(d, driver.SendKey,selenium.ByName,"ehour",hourZone[1])
+			_ = driver.WebElemAction(d, driver.SendKey,selenium.ByName,"ehour",strings.TrimSpace(hourZone[1]))
 
 			_ = driver.WebElemAction(d, driver.Click, selenium.ByXPATH, "/html/body/form/center/input[2]")
 

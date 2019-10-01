@@ -3,6 +3,7 @@ package menu
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -20,19 +21,22 @@ func DaysInMonth(year,month int) int {
 	}
 }
 
-func IsWorkDay(year,month,day int)bool{
+func IsWorkDay(year,month,day int, excludeDays ...int)bool{
 	t := time.Date(year+1911, time.Month(month),day,0,0,0,0,time.UTC).Weekday()
-	if weekday := int(t); weekday == 0 || weekday == 6 {
-		return false
+	weekday := int(t)
+	for _,d := range excludeDays {
+		if weekday == d {
+			return false
+		}
 	}
 	return true
 }
 
-func WorkDayList(year, month int)[]string{
+func WorkDayList(year, month int,excludeDays ...int)[]string{
 	buffer := DaysInMonth(year,month)
 	daylist := []string{}
 	for i:=1;i<=buffer;i++{
-		if ok := IsWorkDay(year,month,i);ok{
+		if ok := IsWorkDay(year,month,i,excludeDays...);ok{
 			day := strconv.Itoa(i)
 			daylist = append(daylist,day)
 		}
@@ -40,9 +44,17 @@ func WorkDayList(year, month int)[]string{
 	return daylist
 }
 
-func TimestringTransfertoInt(opts map[string]*MenuOptions)(map[string]int,error){
-	r := make(map[string]int,len(opts))
-	for k,v := range opts	 {
+func TimestringTransfertoInt(opts map[string]*MenuOptions)(map[string]interface{},error){
+	r := make(map[string]interface{},len(opts))
+	for k,v := range opts {
+		if k == "ExcludeDays" {
+			n,err := ExcludeDaystoInt(v)
+			if err != nil {
+				return nil,err
+			}
+			r[k] = n
+			continue
+		}
 		n,err := strconv.Atoi(v.Value)
 		if err != nil{
 			return nil,err
@@ -51,6 +63,29 @@ func TimestringTransfertoInt(opts map[string]*MenuOptions)(map[string]int,error)
 	}
 	return r, nil
 }
+
+func ExcludeDaystoInt (optsValue *MenuOptions)([]int,error){
+	r := []int{}
+	d := strings.Split(optsValue.Value,",")
+	for _,v := range d {
+		if v == ""{
+			continue
+		}
+
+		vr := strings.TrimSpace(v)
+		n,err := strconv.Atoi(vr)
+		if err != nil{
+			return nil,err
+		}
+		r = append(r,n)
+	}
+	return r, nil
+}
+
+
+
+
+
 
 func outCalcTimefmtList (hourZone,leftHour int)([]string) {
 	TimefmtList := []string{}
@@ -69,6 +104,9 @@ func outCalcTimefmtList (hourZone,leftHour int)([]string) {
 				continue
 			}
 			i++
+			if i == hourZone && leftHour == 0 {
+				break
+			}
 			t+=","
 			fallthrough
 		case 1:
