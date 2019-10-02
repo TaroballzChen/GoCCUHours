@@ -82,3 +82,4 @@ rm 1
 
 # 更新
 * 2019.10.2 修正一些bug, 放寬輸入限制,  新增＂特定禮拜幾不填＂的功能(Hours/ExcludeDays)
+    * [![CCUHours](https://img.youtube.com/vi/LpZ7a1_e0gM/hqdefault.jpg)](https://youtu.be/LpZ7a1_e0gM "CCUHours/Hours/ExcludeDays")
