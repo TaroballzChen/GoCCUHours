@@ -58,6 +58,7 @@ func (rootmo *MenuOptions) AddOption(ID int, Name, Value string) (*MenuOptions, 
 func (rootmo *MenuOptions) DelOptionBy(condition interface{}) bool {
 	if search, ok := rootmo.TraverseBy(condition); ok {
 		search.Prev.Next = search.Next
+		search.Next.Prev = search.Prev
 		rootmo.ReNumber(1)
 		return true
 	}
