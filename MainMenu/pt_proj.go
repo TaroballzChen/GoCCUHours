@@ -16,7 +16,7 @@ func pt_proj(d driver.Driver)error{
 		}
 	}
 
-	if ok := driver.IsGetPageSucc(d,"https://miswww1.ccu.edu.tw/pt_proj/index.php","兼任助理、臨時工工作日誌登錄系統"); !ok{
+	if ok := driver.IsGetPageSucc(d,"https://www026190.ccu.edu.tw/pt_proj/index.php","兼任助理、臨時工工作日誌登錄系統"); !ok{
 		return errors.New("Get page failed")
 	}
 	if err := LoginSystem(d,false);err!= nil {
@@ -29,7 +29,7 @@ func pt_proj(d driver.Driver)error{
 		}
 	}
 
-	if ok,err := IsLogin(d,"https://miswww1.ccu.edu.tw/pt_proj/frame_stu.php");!ok{
+	if ok,err := IsLogin(d,"https://www026190.ccu.edu.tw/pt_proj/frame_stu.php");!ok{
 		return err
 	}
 
@@ -44,7 +44,7 @@ func pt_proj(d driver.Driver)error{
 		if workroot == nil {
 			workroot = BackupWR
 		}
-		if err := d.Get("https://miswww1.ccu.edu.tw/pt_proj/main2.php"); err != nil {
+		if err := d.Get("https://www026190.ccu.edu.tw/pt_proj/main2.php"); err != nil {
 			return err
 		}
 		InputCommonWorkInfo(d,yy,mm,workroot,timeroot)
@@ -54,7 +54,7 @@ func pt_proj(d driver.Driver)error{
 		workroot = workroot.Next
 		timeroot = timeroot.Next
 	}
-	if err := d.Get("https://miswww1.ccu.edu.tw/pt_proj/main2.php");err != nil {
+	if err := d.Get("https://www026190.ccu.edu.tw/pt_proj/main2.php");err != nil {
 		return err
 	}
 	if err := driver.WebElemAction(d,driver.Click,selenium.ByXPATH,"/html/body/form/center/input[2]");err!= nil{
@@ -71,7 +71,7 @@ func pt_proj(d driver.Driver)error{
 	}
 
 	//produce batch number
-	if err := d.Get("https://miswww1.ccu.edu.tw/pt_proj/print_sel.php");err != nil {
+	if err := d.Get("https://www026190.ccu.edu.tw/pt_proj/print_sel.php");err != nil {
 		return err
 	}
 
